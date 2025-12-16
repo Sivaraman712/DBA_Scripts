@@ -34,6 +34,7 @@ SELECT s.session_id
             ) AS XML) AS 'query_text'
     ,COALESCE(QUOTENAME(DB_NAME(st.dbid)) + N'.' + QUOTENAME(OBJECT_SCHEMA_NAME(st.objectid, st.dbid)) + N'.' + 
      QUOTENAME(OBJECT_NAME(st.objectid, st.dbid)), '') AS 'stored_proc'
+	 ,db_name(r.database_id) DatabaseName
     --,qp.query_plan AS 'xml_plan'  -- uncomment (1) if you want to see plan
     ,r.command
     ,s.login_name
