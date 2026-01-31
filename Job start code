@@ -1,0 +1,12 @@
+DECLARE @job_name sysname = N'Test_refresh';
+
+DECLARE @now time(0) = CONVERT(time(0), GETDATE());
+
+IF @now >= '00:00:00' AND @now < '03:00:00'
+BEGIN
+    EXEC msdb.dbo.sp_start_job @job_name = @job_name;
+END
+ELSE
+BEGIN
+    PRINT 'Outside allowed window (00:00-03:00). Job not started.';
+END
